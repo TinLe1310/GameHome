@@ -1,8 +1,8 @@
 class CreateGameGenres < ActiveRecord::Migration[7.1]
   def change
     create_table :game_genres do |t|
-      t.references :game, null: false, foreign_key: true
-      t.references :genre, null: false, foreign_key: true
+      t.integer :game_id
+      t.integer :genre_id
 
       t.timestamps
     end
