@@ -1,5 +1,5 @@
-﻿name,release_date,offiial_store_price,key_shop_price,genres
-"Dragon's Dogma 2",2024-03-22,77.89,61.04,"Action, RPG"
+﻿name,release_date,official_store_price,key_store_price,genres
+Dragon's Dogma 2,2024-03-22,77.89,61.04,"Action, RPG"
 HELLDIVERS 2,2024-02-08,41.49,41.66,Action
 Horizon Forbidden West Complete Edition,2024-03-21,66.39,63.3,"Action, RPG"
 Ghost of Tsushima DIRECTOR'S CUT,2024-05-16,66.39,64.77,"Action, Adventure"
@@ -31,7 +31,7 @@ Prodeus,2022-09-23,20.29,1.87,"Action, Adventure, Casual  "
 Eastward,2021-09-16,16.97,6.19,"Action, Adventure, Indie  "
 Scars Above,2023-02-28,8.13,3.62,"Action, Adventure"
 Bullet Girls Phantasia,2020-01-17,24.48,6.21,Action
-Princess Peach: Showtime! Nintendo Switch,2024-03-22,79.99,,"Action, Adventure"
+Princess Peach: Showtime! Nintendo Switch,2024-03-22,79.99,Unknown,"Action, Adventure"
 ZERO Sievert,2022-11-15,20.32,12.74,"Action, Adventure, Early Access"
 FINAL FANTASY VII REMAKE INTERGRADE,2021-12-16,46.74,49.19,"Action, Adventure, RPG"
 Minecraft,2021-09-02,39.99,25.91,PC Game Pass
@@ -88,7 +88,7 @@ Marvel's Spider-Man: Miles Morales,2022-11-18,33.79,27.2,"Action, Adventure"
 Inscryption,2021-10-19,11.39,10.49,"Adventure, Indie, Strategy"
 Persona 5 Royal,2022-10-21,69.65,55.99,RPG
 DARK SOULS III,2016-04-11,39.4,26.33,Action
-FINAL FANTASY XIV: Dawntrail,2024-07-02,51.99,,"Massively Multiplayer, RPG"
+FINAL FANTASY XIV: Dawntrail,2024-07-02,51.99,Unknown,"Massively Multiplayer, RPG"
 Pacific Drive,2024-02-22,32.36,27.73,"Action, Adventure, Indie  "
 Dungeons of Sundaria,2023-12-12,6.23,9.95,"Action, Adventure, Indie  "
 DARK SOULS: REMASTERED,2018-05-24,42.68,25.46,Action
@@ -98,7 +98,7 @@ Praetorians - HD Remaster,2020-01-24,11.27,9.69,Strategy
 Dead Island 2,2023-04-21,39.68,32.29,Action
 It Takes Two,2021-03-26,13.74,16.19,"PC Game Pass, EA Play, EA Play Pro  "
 DAVE THE DIVER,2023-06-28,22.4,15.27,"Adventure, Casual, RPG  "
-No Rest for the Wicked,2024-04-18,82.99,,"Action, Adventure, Early Access  "
+No Rest for the Wicked,2024-04-18,82.99,Unknown,"Action, Adventure, Early Access  "
 Slay the Princess,2023-10-23,18.79,23.03,"Adventure, Indie, RPG  "
 Dying Light 2 Stay Human: Reloaded Edition,2022-02-04,29.4,29.43,"Action, Adventure, RPG"
 Total War: WARHAMMER III,2022-02-17,67.94,36.48,"Action, Strategy"
@@ -142,7 +142,7 @@ Slice & Dice,2024-03-20,11.79,13.89,"Casual, Indie, RPG  "
 Assassin's Creed Valhalla,2020-11-10,17.6,18.78,"PC Game Pass, Ubisoft Premium PC"
 Suicide Squad: Kill the Justice League,2024-02-02,45.89,48.06,Action
 Airborne Kingdom,2020-12-17,12.02,3.27,PC Game Pass
-Manor Lords,2024-04-26,,39.58,"Simulation, Strategy"
+Manor Lords,2024-04-26,39.9,39.58,"Simulation, Strategy"
 Dead by Daylight,2016-06-14,12.49,12.7,PC Game Pass
 Avatar: Frontiers of Pandora,2023-12-07,47.51,68.72,Ubisoft Premium PC
 Call of Duty: Black Ops III,2015-11-06,79.99,74.35,"Action, Adventure"
@@ -155,7 +155,7 @@ Sifu,2022-02-08,19.79,17.44,"Action, Indie"
 DayZ,2018-12-13,59.99,38.99,"Action, Adventure, Massively Multiplayer"
 Backpack Battles,2024-03-08,13.59,16.29,"Early Access, Strategy"
 Cities: Skylines II,2023-10-24,49.26,41.94,PC Game Pass
-Angel Legion,2020-08-14,Free,,"Adventure, Free to Play, RPG  "
+Angel Legion,2020-08-14,Free,Free,"Adventure, Free to Play, RPG  "
 Strange Brigade,2018-08-28,2.22,2.65,"Action, Adventure"
 Tales of Arise,2021-09-10,15.79,16.07,PC Game Pass
 BERSERK and the Band of the Hawk,2017-02-21,26.59,41.07,Action
@@ -167,7 +167,7 @@ Outer Wilds,2019-05-28,17.42,12.27,"Action, Adventure"
 RoboCop: Rogue City,2023-11-02,35.48,26.33,"Action, Adventure"
 SCARLET NEXUS,2021-06-25,12.77,10.32,"Action, Adventure, RPG"
 Rust,2018-02-08,50.49,58.08,"Action, Adventure, Indie  "
-Rise of the Ronin PS5,2024-03-22,89.99,,"Action, Adventure"
+Rise of the Ronin PS5,2024-03-22,89.99,Unknown,"Action, Adventure"
 Halo: The Master Chief Collection,2019-12-03,49.99,61.98,PC Game Pass
 Dead Cells,2018-08-06,12.55,10.37,PC Game Pass
 Record of Lodoss War-Deedlit in Wonder Labyrinth-,2021-03-27,11.39,16.83,"Action, Indie"
@@ -188,7 +188,7 @@ WWE 2K24,2024-03-08,66.39,71.47,"Simulation, Sports"
 Between Horizons,2024-03-25,16.69,13.14,"Adventure, Indie"
 Sid Meier's Civilization VI,2016-10-21,7.04,4.44,Strategy
 Shadows of Doubt,2023-04-24,20.65,10.14,"Action, Adventure, Early Access  "
-Sons of Valhalla,2024-04-05,,,"Action, RPG, Simulation  "
+Sons of Valhalla,2024-04-05,Free,Free,"Action, RPG, Simulation  "
 POSTAL: Brain Damaged - Connoisseur Edition,2022-06-09,17.09,7.58,Action
 Ash of Gods: The Way,2023-04-27,21.35,10.92,"Indie, Strategy"
 Escape From Tarkov,2017-07-28,70.2,67.28,"Action, Massively Multiplayer, RPG"
@@ -227,7 +227,7 @@ ELDEN RING Shadow of the Erdtree Edition,2022-02-25,91.05,122.52,"Action, RPG"
 Pepper Grinder,2024-03-28,21.74,17.19,"Action, Indie"
 Ratropolis,2020-12-22,10.24,13.3,"Casual, Indie, Simulation  "
 Monster Hunter World: Iceborne,2020-01-09,20.04,14.34,Action
-Diablo II: Resurrected,2021-09-24,54.99,,"Action, RPG"
+Diablo II: Resurrected,2021-09-24,54.99,Unknown,"Action, RPG"
 Phasmophobia,2020-09-18,15.49,21.1,"Action, Early Access, Indie"
 LIVE A LIVE,2023-04-27,40.19,49.37,"Adventure, RPG"
 Lost in Random,2021-09-10,3.99,4.81,"PC Game Pass, EA Play, EA Play Pro  "

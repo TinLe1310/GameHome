@@ -9,4 +9,12 @@ class Genre < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     ["games"]
   end
+
+  def self.ordered_by_games
+    self.select("genres.*")
+        .select("COUNT(game_genres.genre_id) as game_count")
+        .left_joins(:game_genres)
+        .group('genres.id')
+        .order("game_count DESC")
+  end
 end
