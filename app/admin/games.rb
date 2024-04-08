@@ -6,7 +6,7 @@ ActiveAdmin.register Game do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :title, :release_date, :official_store_price, :key_store_price, genre_ids: []
-
+  filter :genres_id_eq, as: :select, collection: -> { Genre.all.map { |genre| [genre.name, genre.id] } }
   remove_filter :image_attachment, :image_blob
   #
   # or

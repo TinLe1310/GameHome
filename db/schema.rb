@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_04_120742) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_05_202037) do
+  create_table "about_pages", force: :cascade do |t|
+    t.string "title"
+    t.string "context"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -65,6 +72,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_04_120742) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "contact_pages", force: :cascade do |t|
+    t.string "title"
+    t.string "context"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "game_genres", force: :cascade do |t|
     t.integer "game_id"
     t.integer "genre_id"
@@ -83,6 +97,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_04_120742) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "title"
+    t.string "context"
+    t.string "permalink"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -23,7 +23,6 @@ puts "Loading Games from the CSV file: #{filename}"
 csv_data = File.read(filename)
 games = CSV.parse(csv_data, headers: true, encoding: "utf-8")
 
-puts games.headers
 games.each do |g|
   puts "Name: #{g['name']}, Release Date: #{g['release_date']}, Official Store Price: #{g['official_store_price']}, Key Store Price: #{g['key_store_price']}"
 

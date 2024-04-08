@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contact_pages/show'
+  get 'about_pages/show'
   get 'users/index'
   get 'users/show'
   get 'genres/index'
