@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   def index
     @games = Game.all
-    @games = Game.order(:name).page params[:page]
+    @games = Game.order(:title).page params[:page]
   end
 
   def show
@@ -11,7 +11,7 @@ class GamesController < ApplicationController
   def search
     key_search = "%#{params[:keywords]}%"
     genre = params[:genre]
-    @games = Game.where("name LIKE ?", key_search)
+    @games = Game.where("title LIKE ?", key_search)
     @games = @games.where("genres LIKE '%?%'", genre) if genre.present?
   end
 end

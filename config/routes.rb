@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get 'contact_pages/show'
-  get 'about_pages/show'
-  get 'users/index'
-  get 'users/show'
-  get 'genres/index'
-  get 'genres/show'
-  get 'games/index'
-  get 'games/show'
+  root to: "games#index"
+
+  resources :games, only: [:index, :show]
+  resources :genres, only: [:index, :show]
+  resources :users, only: [:index, :show]
+  resources :contact_pages, only: [:show]
+  resources :about_pages, only: [:show]
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

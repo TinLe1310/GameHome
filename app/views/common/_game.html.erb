@@ -1,0 +1,28 @@
+<div class="column is-one-quarter">
+  <div class="card">
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <% if game.image.blank? %>
+          <p>No image available</p>
+        <% else %>
+          <%= image_tag game.image %>
+        <% end %>
+      </figure>
+    </div>
+    <div class="card-content">
+      <p class="title is-4"><%= game.title %></p>
+      <p class="subtitle is-6"><%= game.release_date %></p>
+      <div class="content">
+        Game description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </div>
+      <%= link_to "View Details", game, style: "text-decoration: none;" %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
