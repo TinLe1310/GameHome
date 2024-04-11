@@ -10,6 +10,8 @@ class Genre < ApplicationRecord
     ["games"]
   end
 
+  validates :name, presence: true, uniqueness: true
+
   def self.ordered_by_games
     self.select("genres.*")
         .select("COUNT(game_genres.genre_id) as game_count")

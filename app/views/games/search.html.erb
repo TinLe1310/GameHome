@@ -1,0 +1,13 @@
+<p class="mb-5">
+  Found <%= pluralize(@games.count, "Game") %> with keywords: <%= params[:keywords] %>
+</p>
+<section class="section">
+  <div class="container">
+    <h2 class="title is-size-2">Featured Games</h2>
+      <div class="columns is-multiline">
+        <% @games.each do |game| %>
+          <%= render partial: 'common/game', locals: { game: game } %>
+        <% end %>
+    </div>
+  </div>
+</section>

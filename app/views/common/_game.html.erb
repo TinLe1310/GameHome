@@ -13,9 +13,9 @@
       <p class="title is-4"><%= game.title %></p>
       <p class="subtitle is-6"><%= game.release_date %></p>
       <div class="content">
-        Game description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <%= "Genre".pluralize(game.genres.count) %>: <%= game.genres.map(&:name).join(", ") %>
       </div>
-      <%= link_to "View Details", game, style: "text-decoration: none;" %>
+      <%= link_to "View Details", game, class: "button is-primary" %>
     </div>
   </div>
 </div>

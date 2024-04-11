@@ -1,0 +1,27 @@
+<section class="section">
+  <div class="container">
+    <!-- Genre details -->
+    <div class="columns is-multiline">
+      <div class="column is-two-thirds">
+        <article class="media">
+          <div class="media-content">
+            <div class="content">
+              <h1 class="title is-size-2"><%= genre.name %></h1>
+              <p class="mb-5">
+                There are currently <%= genre.games.count %> within <%= genre.name %> genre.
+              </p>
+              <p class="subtitle is-size-4">Developer: Game Developer</p>
+              <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="columns is-multiline">
+        <% genre.games.each do |game| %>
+          <%= render partial: 'common/game', locals: { game: game } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

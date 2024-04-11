@@ -24,7 +24,18 @@
               <p>Official Price: $<%= game.official_store_price %></p>
               <p>Key Store Price: $<%= game.key_store_price %></p>
               <p>Release Date: <%= game.release_date %></p>
-              <a href="#" class="button is-primary">Buy Now</a>
+
+              <% if cart.include?(game) %>
+                <%= button_to cart_path(game), method: :delete do %>
+                  Remove from cart
+                <% end %>
+              <% else %>
+                <%= form_with url: cart_index_path, method: :post do %>
+                  <%= hidden_field_tag(:id, game.id) %>
+                  <%= button_tag 'Add to cart' %>
+                <% end %>
+              <% end %>
+
             </div>
           </div>
         </article>

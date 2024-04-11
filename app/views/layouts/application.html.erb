@@ -13,18 +13,112 @@
 
 
   <body>
-    <!-- Hero section -->
-    <section class="hero is-primary is-fullheight">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title is-size-1">Wrest Games</h1>
-          <h2 class="subtitle is-size-4">Your Ultimate Gaming Destination</h2>
-          <p>Discover, purchase, and enjoy a diverse range of games from top developers.</p>
-          <br>
-          <a class="button is-large is-primary" href="#">Explore Games</a>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="<%= root_path %>">
+          Home
+        </a>
+        <%# <%= link_to "About Us", about_page_path(@about_page) %> %>
+        <a class="navbar-item" href="<%= genres_path %>">
+          Genres
+        </a>
+        <%# <%= link_to "Contact Us", contact_page_path(@contact_page) %> %>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <button class="button is-primary js-modal-trigger" data-target="cart">
+            Cart
+            <% if cart.present? %>
+              <sup>(<%= cart.size %>)</sup>
+            <% end %>
+          </button>
+        </div>
+
+        <!-- Cart Modal-->
+        <div id="cart" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              <% if cart.present? %>
+                <ul>
+                  <% cart.each do |game| %>
+                    <li>
+                      <%= game.title %> <%= button_to '❌', cart_path(game), method: :delete %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% else %>
+                <p>
+                  No items in your cart
+                </p>
+              <% end %>
+            </div>
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
         </div>
       </div>
-    </section>
+    </nav>
+
+    <% if flash[:notice].present? %>
+      <div class="notification is-primary is-light">
+        <%= flash[:notice] %>
+      </div>
+       <meta http-equiv="refresh" content="1"> <!-- Reload the page after 5 seconds -->
+    <% end %>
+
+    <!-- Modal script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+      // Functions to open and close a modal
+      function openModal($el) {
+        $el.classList.add('is-active');
+      }
+
+      function closeModal($el) {
+        $el.classList.remove('is-active');
+      }
+
+      function closeAllModals() {
+        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+          closeModal($modal);
+        });
+      }
+
+      // Event delegation to attach the event listener to a parent element
+      document.body.addEventListener('click', function(event) {
+        if (event.target.matches('.js-modal-trigger')) {
+          openModal();
+        }
+      });
+
+      // Add a click event on buttons to open a specific modal
+      (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+        const modal = $trigger.dataset.target;
+        const $target = document.getElementById(modal);
+
+        $trigger.addEventListener('click', () => {
+          openModal($target);
+        });
+      });
+
+      // Add a click event on various child elements to close the parent modal
+      (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+        const $target = $close.closest('.modal');
+
+        $close.addEventListener('click', () => {
+          closeModal($target);
+        });
+      });
+
+      // Add a keyboard event to close all modals
+      document.addEventListener('keydown', (event) => {
+        if(event.key === "Escape") {
+          closeAllModals();
+        }
+      });
+    });
+    </script>
+
     <%= yield %>
   </body>
 

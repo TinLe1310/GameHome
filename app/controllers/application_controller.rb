@@ -1,7 +1,14 @@
 class ApplicationController < ActionController::Base
-  helper_method :cms_pages
+  before_action :initialize_cart
+  helper_method :cart
 
-  def cms_pages
-    Page.all
+  private
+
+  def initialize_cart
+    session[:shopping_cart] ||= []
+  end
+
+  def cart
+    Game.find(session[:shopping_cart])
   end
 end

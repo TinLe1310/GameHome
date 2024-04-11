@@ -1,2 +1,24 @@
-<h1>Genres#index</h1>
-<p>Find me in app/views/genres/index.html.erb</p>
+<!-- Hero section -->
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Genres of Gaming
+      </h1>
+      <h2 class="subtitle">
+        Explore a variety of gaming genres
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- Genre cards -->
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @genres.each do |genre| %>
+        <%= render partial: 'common/genre', locals: { genre: genre } %>
+      <% end %>
+    </div>
+  </div>
+</section>

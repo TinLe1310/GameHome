@@ -1,5 +1,5 @@
 class ContactPagesController < ApplicationController
   def show
-    @contact = ContactPage.find(params[:id])
+    @contact_page = ContactPage.find(params[:id])
   end
 end

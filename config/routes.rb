@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
   root to: "games#index"
 
-  resources :games, only: [:index, :show]
+  resources :games, only: [:index, :show] do
+    collection do
+      get "search"
+    end
+  end
   resources :genres, only: [:index, :show]
   resources :users, only: [:index, :show]
   resources :contact_pages, only: [:show]
   resources :about_pages, only: [:show]
+
+  resources :cart, only: [:create, :destroy]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

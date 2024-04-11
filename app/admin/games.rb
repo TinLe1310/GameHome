@@ -5,7 +5,7 @@ ActiveAdmin.register Game do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :release_date, :official_store_price, :key_store_price, :image
+  permit_params :title, :release_date, :official_store_price, :key_store_price, :image, genre_ids: []
   filter :genres_id_eq, as: :select, collection: -> { Genre.all.map { |genre| [genre.name, genre.id] } }
   remove_filter :image_attachment, :image_blob
   #
@@ -16,6 +16,22 @@ ActiveAdmin.register Game do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  index do
+    selectable_column
+    id_column
+    column :title
+    column :release_date
+    column :official_store_price
+    column :key_store_price
+    column "Genres" do |game|
+      game.genres.map(&:name).join(', ').html_safe
+    end
+    column "Image" do |game|
+      image_tag(game.image) if game.image.present?
+    end
+    actions
+  end
 
   form do |f|
     f.semantic_errors

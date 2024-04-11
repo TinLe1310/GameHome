@@ -1,6 +1,6 @@
 class GenresController < ApplicationController
   def index
-    @genres = ordered_by_games
+    @genres = Genre.ordered_by_games
   end
 
   def show

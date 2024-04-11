@@ -32,6 +32,11 @@ gem 'devise'
 
 gem 'sassc-rails'
 
+gem 'pry'
+
+gem 'pry-remote'
+
+gem 'pry-nav'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
