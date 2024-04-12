@@ -31,7 +31,7 @@ gem 'activeadmin', '3.1.0'
 gem 'devise'
 
 gem 'sassc-rails'
-
+gem 'stripe'
 gem 'pry'
 
 gem 'pry-remote'
