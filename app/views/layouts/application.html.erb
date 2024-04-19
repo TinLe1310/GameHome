@@ -7,7 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%# <%= javascript_importmap_tags %> %>
+    <%# <%= javascript_importmap_tags %>
     <script src="https://js.stripe.com/v3"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   </head>
@@ -19,11 +19,15 @@
         <a class="navbar-item" href="<%= root_path %>">
           Home
         </a>
-        <%# <%= link_to "About Us", about_page_path(@about_page) %> %>
+        <a class="navbar-item" href="<%= about_page_path(@about_page) %>">
+          About Us
+        </a>
         <a class="navbar-item" href="<%= genres_path %>">
           Genres
         </a>
-        <%# <%= link_to "Contact Us", contact_page_path(@contact_page) %> %>
+        <a class="navbar-item" href="<%= contact_page_path(@contact_page) %>">
+          Contact Us
+        </a>
       </div>
       <div class="navbar-menu">
         <div class="navbar-end">
@@ -33,6 +37,7 @@
               <sup>(<%= cart.size %>)</sup>
             <% end %>
           </button>
+
         </div>
 
         <!-- Cart Modal-->
@@ -42,12 +47,21 @@
             <div class="box">
               <% if cart.present? %>
                 <ul>
-                  <% cart.each do |game| %>
+                  <% session[:cart_items].each do |item| %>
                     <li>
-                      <%= game.title %> <%= button_to '❌', cart_path(game), method: :delete %>
+                      <%= item["game"]["title"] %>
+                      <%= form_tag(cart_path(item["game"]["id"]), method: :patch) do %>
+                        <%= hidden_field_tag(:id, item["game"]["id"]) %>
+                        <%= number_field_tag :quantity, item["quantity"], min: 1 %>
+                        <%= submit_tag "Update" %>
+                      <% end %>
+                      <%= button_to '❌', cart_path(item["game"]["id"]), method: :delete %>
                     </li>
                   <% end %>
                 </ul>
+                <%= form_with url: checkout_create_path, remote: true do %>
+                  <%= button_tag 'Buy Now' %>
+                <% end %>
               <% else %>
                 <p>
                   No items in your cart
@@ -59,7 +73,7 @@
         </div>
       </div>
     </nav>
-
+<p><%= session[:cart_items]%></p>
     <% if flash[:notice].present? %>
       <div class="notification is-primary is-light">
         <%= flash[:notice] %>

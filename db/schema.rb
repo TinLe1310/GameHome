@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_05_202037) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_19_093911) do
   create_table "about_pages", force: :cascade do |t|
     t.string "title"
     t.string "context"
@@ -105,6 +105,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_202037) do
     t.string "title"
     t.string "context"
     t.string "permalink"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taxes", force: :cascade do |t|
+    t.string "province"
+    t.float "PST"
+    t.float "GST"
+    t.float "HST"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

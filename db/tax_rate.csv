@@ -1,0 +1,14 @@
+﻿province,PST,GST,HST
+Alberta,0,0.05,0
+British Columbia,0.07,0.05,0
+Manitoba,0.07,0.05,0
+New Brunswick,0,0,0.15
+Newfoundland and Labrador,0,0,0.15
+Northwest Territories,0,0.05,
+Nova Scotia,0,0,0.15
+Nunavut,0,0.05,0
+Ontario,0,0,0.13
+Prince Edward Island,0,0,0.15
+Quebec,0.09975,0.05,0
+Saskatchewan,0.06,0.05,0
+Yukon,0,0.05,0

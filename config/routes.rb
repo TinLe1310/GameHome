@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :contact_pages, only: [:show]
   resources :about_pages, only: [:show]
 
-  resources :cart, only: [:create, :destroy]
+  resources :cart, only: [:create, :destroy, :update] do
+    post 'update/:id', action: :update, on: :member, as: :update
+  end
 
   scope "/checkout" do
     post "create", to: "checkout#create", as: "checkout_create"

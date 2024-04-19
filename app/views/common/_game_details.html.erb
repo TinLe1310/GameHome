@@ -30,12 +30,11 @@
                   Remove from cart
                 <% end %>
               <% else %>
-                <%= form_with url: checkout_create_path, remote: true do %>
+                <%= form_with url: cart_index_path, method: :post do %>
                   <%= hidden_field_tag(:id, game.id) %>
-                  <%= button_tag 'Buy Now' %>
+                  <%= button_tag 'Add to cart' %>
                 <% end %>
               <% end %>
-
             </div>
           </div>
         </article>

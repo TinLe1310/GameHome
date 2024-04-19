@@ -13,15 +13,22 @@ require 'csv'
 GameGenre.delete_all
 Genre.delete_all
 Game.delete_all
+Tax.delete_all
 AdminUser.delete_all
 
 #fetch the filename
-filename = Rails.root.join("db/games.csv")
+filegame = Rails.root.join("db/games.csv")
+filetax = Rails.root.join("db/tax_rate.csv")
 
-puts "Loading Games from the CSV file: #{filename}"
+puts "Loading Games from the CSV file: #{filegame}"
+puts "Loading Taxes from the CSV file: #{filetax}"
 
-csv_data = File.read(filename)
-games = CSV.parse(csv_data, headers: true, encoding: "utf-8")
+csv_game_data = File.read(filegame)
+games = CSV.parse(csv_game_data, headers: true, encoding: "utf-8")
+
+csv_tax_data = File.read(filetax)
+taxes = CSV.parse(csv_tax_data, headers: true, encoding: "utf-8")
+
 
 games.each do |g|
   puts "Name: #{g['name']}, Release Date: #{g['release_date']}, Official Store Price: #{g['official_store_price']}, Key Store Price: #{g['key_store_price']}"
@@ -42,8 +49,18 @@ games.each do |g|
 
 end
 
+taxes.each do |t|
+  tax = Tax.create(
+    province: t["province"],
+    PST: t["PST"],
+    GST: t["GST"],
+    HST: t["HST"],
+  )
+end
+
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 puts "Created #{Game.count} Games"
 puts "Created #{Genre.count} Genres"
 puts "Created #{GameGenre.count} Game Genres"
+puts "Created #{Tax.count} Taxes"
