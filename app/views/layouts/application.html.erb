@@ -28,6 +28,16 @@
         <a class="navbar-item" href="<%= contact_page_path(@contact_page) %>">
           Contact Us
         </a>
+        <% if current_user %>
+          <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <a class="navbar-item" href="<%= new_user_session_path %>">
+            Sign In
+          </a>
+        <% end %>
+
+
+
       </div>
       <div class="navbar-menu">
         <div class="navbar-end">
@@ -59,8 +69,13 @@
                     </li>
                   <% end %>
                 </ul>
+
+                <% if current_user %>
                 <%= form_with url: checkout_create_path, remote: true do %>
                   <%= button_tag 'Buy Now' %>
+                <% end %>
+                <% else %>
+                  <%= button_to 'Sign in to Checkout', new_user_session_path%>
                 <% end %>
               <% else %>
                 <p>
@@ -73,6 +88,17 @@
         </div>
       </div>
     </nav>
+<% if current_user %>
+  <p><%= current_user.user_name %></p>
+  <%= form_for(current_user, url: user_path(current_user), method: :patch) do |f| %>
+    <% if current_user.address.present? %>
+      <%= f.text_field :address, value: current_user.address %>
+    <% else %>
+      <%= f.collection_select :address, Tax.all, :province, :province %>
+    <% end %>
+    <%= f.submit "Save" %>
+  <% end %>
+<% end %>
 <p><%= session[:cart_items]%></p>
     <% if flash[:notice].present? %>
       <div class="notification is-primary is-light">

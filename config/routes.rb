@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
   end
   resources :genres, only: [:index, :show]
-  resources :users, only: [:index, :show]
+  resources :users, only: [:update]
   resources :contact_pages, only: [:show]
   resources :about_pages, only: [:show]
 
@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     get "cancel", to: "checkout#cancel", as: "checkout_cancel"
   end
 
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_for :admin_users, ActiveAdmin::Devise.config
+
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

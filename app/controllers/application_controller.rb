@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :initialize_cart, :set_page
   helper_method :cart
 
@@ -16,5 +17,9 @@ class ApplicationController < ActionController::Base
   def set_page
     @about_page = AboutPage.first # Or any other logic to retrieve the page
     @contact_page = ContactPage.first
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name])
   end
 end
