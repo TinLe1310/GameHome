@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
+# Create
 class CartController < ApplicationController
   def create
     logger.debug("Adding #{params[:id]} to cart.")
     id = params[:id].to_i
     quantity = 1
     game = Game.find(id)
-    session[:shopping_cart] << id if game unless session[:shopping_cart].include?(id)
-    session[:cart_items] << { game: game, quantity: quantity } if game
+    session[:shopping_cart] << id if !session[:shopping_cart].include?(id) && game
+    session[:cart_items] << { game:, quantity: } if game
     flash[:notice] = "#{game.title} has been added to cart"
 
     redirect_to root_path

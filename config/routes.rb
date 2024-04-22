@@ -1,24 +1,26 @@
-Rails.application.routes.draw do
-  root to: "games#index"
+# frozen_string_literal: true
 
-  resources :games, only: [:index, :show] do
+Rails.application.routes.draw do
+  root to: 'games#index'
+
+  resources :games, only: %i[index show] do
     collection do
-      get "search"
+      get 'search'
     end
   end
-  resources :genres, only: [:index, :show]
+  resources :genres, only: %i[index show]
   resources :users, only: [:update]
   resources :contact_pages, only: [:show]
   resources :about_pages, only: [:show]
 
-  resources :cart, only: [:create, :destroy, :update] do
+  resources :cart, only: %i[create destroy update] do
     post 'update/:id', action: :update, on: :member, as: :update
   end
 
-  scope "/checkout" do
-    post "create", to: "checkout#create", as: "checkout_create"
-    get "success", to: "checkout#success", as: "checkout_success"
-    get "cancel", to: "checkout#cancel", as: "checkout_cancel"
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get 'success', to: 'checkout#success', as: 'checkout_success'
+    get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
   end
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Defines the root path route ("/")
   # root "posts#index"
