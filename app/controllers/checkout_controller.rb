@@ -2,6 +2,13 @@ class CheckoutController < ApplicationController
   def create
     #Establish connection with Stripe
     @cart_items = session[:cart_items]
+    @current_user = current_user
+    address = @current_user[:address]
+
+    @user_gst = Tax.find_by(province: address).GST
+    @user_pst = Tax.find_by(province: address).PST
+    @user_hst = Tax.find_by(province: address).HST
+
     @list_items = []
     @total_amount = 0
 
@@ -30,32 +37,54 @@ class CheckoutController < ApplicationController
       @total_amount += (game['official_store_price'].to_i) * 100 * quantity
     end
 
-    @gst_item = {
-      quantity: 1,
-      price_data:{
-        unit_amount: (@total_amount * 0.05).to_i,
-        currency: "CAD",
-        product_data:{
-          name: "GST",
-          description: "Goods and Services Tax",
+    if @user_gst > 0
+      @gst_item = {
+        quantity: 1,
+        price_data:{
+          unit_amount: (@total_amount * @user_gst).to_i,
+          currency: "CAD",
+          product_data:{
+            name: "GST",
+            description: "Goods and Services Tax",
+          }
         }
       }
-    }
 
-    @pst_item = {
-      quantity: 1,
-      price_data:{
-        unit_amount: (@total_amount * 0.07).to_i,
-        currency: "CAD",
-        product_data:{
-          name: "PST",
-          description: "Provincial Sales Tax",
+      @list_items << @gst_item
+    end
+
+    if @user_pst > 0
+      @pst_item = {
+        quantity: 1,
+        price_data:{
+          unit_amount: (@total_amount * @user_pst).to_i,
+          currency: "CAD",
+          product_data:{
+            name: "PST",
+            description: "Provincial Sales Tax",
+          }
         }
       }
-    }
 
-    @list_items << @gst_item
-    @list_items << @pst_item
+      @list_items << @pst_item
+    end
+
+    if @user_hst > 0
+      @hst_item = {
+        quantity: 1,
+        price_data:{
+          unit_amount: (@total_amount * @user_hst).to_i,
+          currency: "CAD",
+          product_data:{
+            name: "HST",
+            description: "Harmonized Sales Tax",
+          }
+        }
+      }
+
+      @list_items << @hst_item
+    end
+
 
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ["card"],
