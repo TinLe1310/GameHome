@@ -47,7 +47,6 @@
               <sup>(<%= cart.size %>)</sup>
             <% end %>
           </button>
-
         </div>
 
         <!-- Cart Modal-->
@@ -71,9 +70,50 @@
                 </ul>
 
                 <% if current_user %>
-                <%= form_with url: checkout_create_path, remote: true do %>
-                  <%= button_tag 'Buy Now' %>
-                <% end %>
+                  <%= form_with url: checkout_create_path, remote: true do %>
+                    <%= button_tag 'Buy Now' %>
+                  <% end %>
+
+                <button class="button is-primary js-modal-trigger" data-target="invoice">
+                  Invoice
+                </button>
+
+                <!-- Invoice Modal -->
+                <div class="modal" id="invoice">
+                  <div class="modal-background"></div>
+                  <div class="modal-content">
+                    <div class="box">
+                      <div class="content">
+                        <h1 class="title">Invoice</h1>
+                        <hr>
+                        <!-- Customer Information -->
+                        <div class="invoice-section">
+                          <h2 class="subtitle">Customer Information</h2>
+                          <p><strong>Customer Name:</strong> <%= current_user.user_name %> </p>
+                          <!-- Add more customer information fields as needed -->
+                        </div>
+                        <hr>
+                        <!-- Order Details -->
+                        <div class="invoice-section">
+                          <h2 class="subtitle">Order Details</h2>
+                          <!-- Loop through order items -->
+                          <% session[:cart_items].each do |item| %>
+                            <p><strong>Product:</strong> <%= item["game"]["title"] %></p>
+                            <p><strong>Quantity:</strong> <%= item["quantity"] %></p>
+                            <p><strong>Price:</strong> <%= number_to_currency(item["game"]["official_store_price"]) %></p>
+                            <% session[:total_amount] += (item["game"]["official_store_price"].to_f * item["quantity"].to_f) %>
+                            <!-- Add more item details as needed -->
+                            <hr>
+                          <% end %>
+                          <!-- Total Amount -->
+                          <p><strong>Total Amount:</strong><%= number_to_currency(session[:total_amount]) %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="modal-close is-large" aria-label="close"></button>
+                </div>
+
                 <% else %>
                   <%= button_to 'Sign in to Checkout', new_user_session_path%>
                 <% end %>
@@ -88,23 +128,31 @@
         </div>
       </div>
     </nav>
-<% if current_user %>
-  <p><%= current_user.user_name %></p>
-  <%= form_for(current_user, url: user_path(current_user), method: :patch) do |f| %>
-    <% if current_user.address.present? %>
-      <%= f.text_field :address, value: current_user.address %>
-    <% else %>
-      <%= f.collection_select :address, Tax.all, :province, :province %>
+
+    <!-- Current User -->
+    <% if current_user %>
+      <p><strong>User: </strong><%= current_user.user_name %></p>
+      <%= form_for(current_user, url: user_path(current_user), method: :patch) do |f| %>
+        <% if current_user.address.present? %>
+          <strong>User's Address: </strong><%= f.text_field :address, value: current_user.address %>
+          <br>
+          <strong>Update: </strong><%= f.collection_select :address, Tax.all, :province, :province %>
+        <% else %>
+          Changing Address: <%= f.collection_select :address, Tax.all, :province, :province %>
+        <% end %>
+        <%= f.submit "Save" %>
+      <% end %>
     <% end %>
-    <%= f.submit "Save" %>
-  <% end %>
-<% end %>
-<p><%= session[:cart_items]%></p>
+
+    <!-- Current Cart -->
+    <p><%= session[:cart_items]%></p>
+
+    <!-- Notification -->
     <% if flash[:notice].present? %>
       <div class="notification is-primary is-light">
         <%= flash[:notice] %>
       </div>
-       <meta http-equiv="refresh" content="1"> <!-- Reload the page after 5 seconds -->
+        <meta http-equiv="refresh" content="1"> <!-- Reload the page after 5 seconds -->
     <% end %>
 
     <!-- Modal script -->
