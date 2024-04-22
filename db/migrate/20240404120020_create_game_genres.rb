@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Create GameGenres
 class CreateGameGenres < ActiveRecord::Migration[7.1]
   def change
     create_table :game_genres do |t|

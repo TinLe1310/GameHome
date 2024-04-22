@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Create
 class GamesController < ApplicationController
   def index
     @games = Game.all
@@ -12,7 +15,7 @@ class GamesController < ApplicationController
   def search
     key_search = "%#{params[:keywords]}%"
     genre = params[:genre]
-    @games = Game.where("title LIKE ?", key_search)
+    @games = Game.where('title LIKE ?', key_search)
     @games = @games.joins(game_genres: :genre).where(genres: { name: genre }) if genre.present? && genre != 'All Genres'
   end
 end
