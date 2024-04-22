@@ -16,28 +16,28 @@
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="<%= root_path %>">
+        <a class="navbar-item" href="<%= root_path %>" style="text-decoration: none;">
           Home
         </a>
-        <a class="navbar-item" href="<%= about_page_path(@about_page) %>">
+        <a class="navbar-item" href="<%= about_page_path(@about_page) %>" style="text-decoration: none;">
           About Us
         </a>
-        <a class="navbar-item" href="<%= genres_path %>">
+        <a class="navbar-item" href="<%= genres_path %>" style="text-decoration: none;">
           Genres
         </a>
-        <a class="navbar-item" href="<%= contact_page_path(@contact_page) %>">
+        <a class="navbar-item" href="<%= contact_page_path(@contact_page) %>" style="text-decoration: none;">
           Contact Us
         </a>
         <% if current_user %>
+          <a class="navbar-item js-modal-trigger" data-target="user">
+            User
+          </a>
           <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
         <% else %>
-          <a class="navbar-item" href="<%= new_user_session_path %>">
+          <a class="navbar-item" href="<%= new_user_session_path %>" style="text-decoration: none;">
             Sign In
           </a>
         <% end %>
-
-
-
       </div>
       <div class="navbar-menu">
         <div class="navbar-end">
@@ -131,21 +131,30 @@
 
     <!-- Current User -->
     <% if current_user %>
-      <p><strong>User: </strong><%= current_user.user_name %></p>
-      <%= form_for(current_user, url: user_path(current_user), method: :patch) do |f| %>
-        <% if current_user.address.present? %>
-          <strong>User's Address: </strong><%= f.text_field :address, value: current_user.address %>
-          <br>
-          <strong>Update: </strong><%= f.collection_select :address, Tax.all, :province, :province %>
-        <% else %>
-          Changing Address: <%= f.collection_select :address, Tax.all, :province, :province %>
-        <% end %>
-        <%= f.submit "Save" %>
-      <% end %>
+      <div class="modal" id="user">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="box">
+            <div class="content">
+              <h1 class="title">User Info</h1>
+              <p><strong>Name: </strong><%= current_user.user_name %></p>
+              <%= form_for(current_user, url: user_path(current_user), method: :patch) do |f| %>
+                <% if current_user.address.present? %>
+                  <strong>User's Address: </strong><%= f.text_field :address, value: current_user.address %>
+                  <br>
+                  <strong>Update: </strong><%= f.collection_select :address, Tax.all, :province, :province %>
+                <% else %>
+                  Changing Address: <%= f.collection_select :address, Tax.all, :province, :province %>
+                <% end %>
+                <%= f.submit "Save" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
     <% end %>
 
-    <!-- Current Cart -->
-    <p><%= session[:cart_items]%></p>
 
     <!-- Notification -->
     <% if flash[:notice].present? %>
